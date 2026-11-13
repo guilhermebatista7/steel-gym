@@ -51,7 +51,11 @@ function Hero() {
     <img className="hero-photo" src={media.mural} alt="" fetchPriority="high" />
     <div className="wrap hero-inner">
       <p className="eyebrow hero-tag">Steel Gym <span> / </span> Since {gym.founded}</p>
-      <h1 id="hero-title">Mais que<br />treinar.<br /><em>É sobre evoluir.</em></h1>
+      <h1 id="hero-title">
+        <span className="hero-line">Mais que</span>
+        <span className="hero-line">treinar.</span>
+        <em className="hero-line">É sobre evoluir.</em>
+      </h1>
       <p className="hero-copy">Em Catanduva, uma academia construída com disciplina, dedicação e paixão por transformar vidas.</p>
       <div className="actions">
         <a className="button primary" href="#estrutura">Conheça nossa estrutura <span aria-hidden="true">↗</span></a>
@@ -66,7 +70,7 @@ function Hero() {
 }
 
 function About() {
-  return <section className="section wrap editorial" id="a-steel" data-reveal>
+  return <section className="section wrap editorial" id="a-steel">
     <figure className="editorial-photo">
       <img src={gallery[0].src} alt={gallery[0].alt} loading="lazy" />
       <figcaption>Steel Gym · {gym.city}</figcaption>
@@ -89,11 +93,11 @@ function Gallery() {
 
   return <section className="section structure" id="estrutura">
     <div className="wrap">
-      <div className="split-heading" data-reveal>
+      <div className="split-heading">
         <div><p className="eyebrow">Estrutura</p><h2>Por dentro<br />da <em>Steel.</em></h2></div>
         <p>Equipamentos novos e de qualidade, ambiente limpo e organizado e uma equipe atenciosa. É o que os alunos destacam nas avaliações.</p>
       </div>
-      <div className="gallery" data-reveal>
+      <div className="gallery">
         {gallery.map(({ src, title, alt }, i) => <button className="gallery-tile" type="button" key={src} aria-label={`Ampliar: ${title}`} onClick={event => {
           trigger.current = event.currentTarget;
           setIndex(i);
@@ -124,7 +128,7 @@ function Gallery() {
 }
 
 function Coaching() {
-  return <section className="section wrap editorial coaching" data-reveal>
+  return <section className="section wrap editorial coaching">
     <div className="section-copy">
       <p className="eyebrow">Acompanhamento</p>
       <h2>Evolução não acontece <em>sozinha.</em></h2>
@@ -141,7 +145,7 @@ function Coaching() {
 
 function Reviews() {
   return <section className="section reviews" id="avaliacoes">
-    <div className="wrap" data-reveal>
+    <div className="wrap">
       <div className="split-heading">
         <div><p className="eyebrow">Avaliações</p><h2>Quem treina<br /> <em>conta.</em></h2></div>
         <div className="rating"><div><strong>{gym.rating}</strong> / 5,0</div><span className="stars" aria-hidden="true">★★★★★</span><p>{gym.reviewCount} avaliações no Google</p></div>
@@ -155,7 +159,7 @@ function Reviews() {
 }
 
 function Mascot() {
-  return <section className="section wrap editorial mascot" aria-labelledby="mascot-title" data-reveal>
+  return <section className="section wrap editorial mascot" aria-labelledby="mascot-title">
     <div className="section-copy">
       <h2 id="mascot-title">O mascote da <em>Steel.</em></h2>
     </div>
@@ -168,14 +172,14 @@ function Mascot() {
 function Contact() {
   return <>
     <section className="callout">
-      <div className="wrap" data-reveal>
+      <div className="wrap">
         <h2>Chegou a sua vez<br /> de <em>evoluir.</em></h2>
         <p>Conheça a Steel Gym e faça parte de uma história construída com disciplina e dedicação desde 2001.</p>
         <WhatsApp />
       </div>
     </section>
     <section className="section wrap contact" id="contato">
-      <div className="section-copy" data-reveal>
+      <div className="section-copy">
         <p className="eyebrow">Localização e contato</p><h2>Visite a <em>Steel.</em></h2>
         <address>
           <p>{gym.address}</p>
@@ -208,13 +212,13 @@ function App() {
     const observer = new IntersectionObserver(entries => {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
-        entry.target.animate([{ opacity: 0.65, transform: 'translateY(18px)' }, { opacity: 1, transform: 'translateY(0)' }], {
-          duration: 490, easing: 'cubic-bezier(.2,.65,.3,1)',
+        entry.target.animate([{ opacity: 0.25, transform: 'translateY(22px)' }, { opacity: 1, transform: 'translateY(0)' }], {
+          duration: 560, easing: 'cubic-bezier(.2,.65,.3,1)',
         });
         observer.unobserve(entry.target);
       }
     }, { threshold: 0.12 });
-    document.querySelectorAll('[data-reveal]').forEach(element => observer.observe(element));
+    document.querySelectorAll('main h2, .gallery').forEach(element => observer.observe(element));
     return () => observer.disconnect();
   }, []);
 

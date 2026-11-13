@@ -57,6 +57,13 @@ h1, h2 { font-family: var(--display); font-weight: 800; line-height: .89; text-t
 h1 { font-size: clamp(3.35rem, 11.5vw, 9.35rem); margin-top: .85rem; }
 h2 { font-size: clamp(3.1rem, 8.5vw, 6.5rem); }
 h1 em, h2 em { color: var(--accent); font-style: normal; }
+.hero-line { display: block; animation: hero-line-in .7s cubic-bezier(.2,.65,.3,1) both; }
+.hero-line:nth-child(2) { animation-delay: .09s; }
+.hero-line:nth-child(3) { animation-delay: .18s; }
+@keyframes hero-line-in {
+  from { opacity: 0; transform: translateY(.26em); }
+  to { opacity: 1; transform: translateY(0); }
+}
 .hero-copy { color: #d6dce5; max-width: 29rem; margin: 1.3rem 0 1.4rem; line-height: 1.65; font-size: .96rem; }
 .actions { display: flex; flex-wrap: wrap; gap: .55rem; }
 .hero-foot { margin-top: 2rem; min-height: 3.6rem; display: flex; align-items: center; justify-content: space-between; gap: .6rem; border-top: 1px solid #ffffff32; color: #c0c8d4; font-size: .66rem; letter-spacing: .06em; }
